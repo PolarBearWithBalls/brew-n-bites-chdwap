@@ -24,18 +24,37 @@ import { Toaster, toast } from "sonner";
 import { z } from "zod";
 
 import logo from "@/assets/logo.png";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
-import coffeeImg from "@/assets/menu-coffee.jpg";
-import foodImg from "@/assets/menu-food.jpg";
-import dessertImg from "@/assets/menu-dessert.jpg";
-import beverageImg from "@/assets/menu-beverage.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import pPizzaFries from "@/assets/photo-112419.png.asset.json";
+import pPasta from "@/assets/photo-112509.png.asset.json";
+import pNoodles from "@/assets/photo-112628.png.asset.json";
+import pCoffee from "@/assets/photo-112842.png.asset.json";
+import pSandwich from "@/assets/photo-112916.png.asset.json";
+import pMojitos from "@/assets/photo-113016.png.asset.json";
+import pInterior1 from "@/assets/photo-113159.png.asset.json";
+import pShakePizza from "@/assets/photo-113237.png.asset.json";
+import pGuest from "@/assets/photo-113542.png.asset.json";
+import pInterior2 from "@/assets/photo-115630.png.asset.json";
+
+const heroImg = pInterior1.url;
+const aboutImg = pInterior2.url;
+const coffeeImg = pCoffee.url;
+const foodImg = pPizzaFries.url;
+const dessertImg = pShakePizza.url;
+const beverageImg = pMojitos.url;
+const g1 = pNoodles.url;
+const g2 = pSandwich.url;
+const g3 = pPasta.url;
+const g4 = pGuest.url;
+const g5 = pShakePizza.url;
+const g6 = pInterior1.url;
+
+const INSTAGRAM_URL = "https://www.instagram.com/brewn_bites";
+const FACEBOOK_URL = "https://www.facebook.com/brewnbiteschd";
+const MAPS_URL = "https://maps.app.goo.gl/TMSGp5sLdCvatouy5";
+const MAPS_EMBED = "https://www.google.com/maps?q=Brew+N+Bites+Pugliya+Nagar+Civil+Lines+Chandrapur&output=embed";
+const PHONE = "+91 84079 46464";
+const PHONE_TEL = "+918407946464";
+const ADDRESS = "Opposite Collector Bungalow, Pugliya Nagar, Civil Lines, Chandrapur, Maharashtra 442401";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -751,7 +770,7 @@ function Visit() {
             <div className="overflow-hidden rounded-3xl border border-border shadow-soft aspect-[4/3] lg:aspect-auto lg:h-full min-h-[360px]">
               <iframe
                 title="Brew N' Bites location"
-                src="https://www.google.com/maps?q=Chandrapur,Maharashtra&output=embed"
+                src={MAPS_EMBED}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-full w-full grayscale-[15%]"
@@ -763,17 +782,17 @@ function Visit() {
               <h3 className="font-display text-3xl font-semibold text-foreground">Brew N&apos; Bites</h3>
               <p className="mt-2 text-muted-foreground">Chandrapur, Maharashtra, India</p>
               <ul className="mt-8 space-y-5">
-                <InfoRow icon={MapPin} title="Address" text="Main Road, Chandrapur, Maharashtra 442401" />
+                <InfoRow icon={MapPin} title="Address" text={ADDRESS} />
                 <InfoRow
                   icon={Clock}
                   title="Opening Hours"
-                  text="Monday – Sunday · 8:00 AM – 11:00 PM"
+                  text="Monday – Sunday · 8:30 AM – 11:00 PM"
                 />
-                <InfoRow icon={Phone} title="Phone" text="+91 98765 43210" />
+                <InfoRow icon={Phone} title="Phone" text={PHONE} />
                 <InfoRow icon={Mail} title="Email" text="hello@brewnbites.in" />
               </ul>
               <a
-                href="https://www.google.com/maps?q=Chandrapur,Maharashtra"
+                href={MAPS_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-10 inline-flex items-center gap-2 rounded-full gradient-caramel px-6 py-3 text-sm font-semibold text-cream shadow-warm hover:scale-[1.02] transition"
@@ -956,23 +975,23 @@ function Social() {
   const socials = [
     {
       name: "Instagram",
-      handle: "@brewnbites",
+      handle: "@brewn_bites",
       icon: Instagram,
-      href: "https://instagram.com",
+      href: INSTAGRAM_URL,
       grad: "from-pink-500 via-rose-500 to-amber-500",
     },
     {
       name: "Facebook",
-      handle: "/brewnbites",
+      handle: "/brewnbiteschd",
       icon: Facebook,
-      href: "https://facebook.com",
+      href: FACEBOOK_URL,
       grad: "from-blue-600 to-indigo-600",
     },
     {
       name: "WhatsApp",
-      handle: "+91 98765 43210",
+      handle: PHONE,
       icon: MessageCircle,
-      href: "https://wa.me/919876543210",
+      href: `https://wa.me/${PHONE_TEL.replace("+", "")}`,
       grad: "from-emerald-500 to-green-600",
     },
   ];
@@ -1036,7 +1055,7 @@ function FinalCTA() {
               unforgettable conversations.
             </p>
             <a
-              href="https://www.google.com/maps?q=Chandrapur,Maharashtra"
+              href={MAPS_URL}
               target="_blank"
               rel="noreferrer"
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-cream px-8 py-4 text-sm font-semibold text-espresso shadow-warm hover:scale-[1.03] transition"
@@ -1065,12 +1084,18 @@ function Footer() {
               Coffee is our fuel. Food is our medicine. People are life.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Instagram, Facebook, MessageCircle].map((Icon, i) => (
+              {[
+                { Icon: Instagram, href: INSTAGRAM_URL, label: "Instagram" },
+                { Icon: Facebook, href: FACEBOOK_URL, label: "Facebook" },
+                { Icon: MessageCircle, href: `https://wa.me/${PHONE_TEL.replace("+", "")}`, label: "WhatsApp" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="grid h-10 w-10 place-items-center rounded-full border border-cream/20 hover:bg-accent hover:border-accent hover:text-cream transition"
-                  aria-label="Social link"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -1096,14 +1121,14 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-accent" />
-                Chandrapur, Maharashtra
+                Pugliya Nagar, Civil Lines, Chandrapur 442401
               </li>
               <li className="flex items-start gap-2">
-                <Clock className="h-4 w-4 mt-0.5 shrink-0 text-accent" />8 AM – 11 PM, Daily
+                <Clock className="h-4 w-4 mt-0.5 shrink-0 text-accent" />8:30 AM – 11 PM, Daily
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="h-4 w-4 mt-0.5 shrink-0 text-accent" />
-                +91 98765 43210
+                <a href={`tel:${PHONE_TEL}`} className="hover:text-accent">{PHONE}</a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 shrink-0 text-accent" />
