@@ -1,0 +1,145 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-espresso: var(--espresso);
+  --color-coffee: var(--coffee);
+  --color-cream: var(--cream);
+  --color-beige: var(--beige);
+  --color-caramel: var(--caramel);
+
+  --shadow-warm: 0 20px 50px -20px color-mix(in oklab, var(--coffee) 35%, transparent);
+  --shadow-soft: 0 10px 30px -15px color-mix(in oklab, var(--espresso) 25%, transparent);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Brand palette */
+  --espresso: oklch(0.27 0.05 40);     /* #3B1F15 */
+  --coffee: oklch(0.36 0.08 40);       /* #5A2D1D */
+  --cream: oklch(0.96 0.015 80);       /* #F5EFE6 */
+  --beige: oklch(0.91 0.03 80);        /* #E8DCC8 */
+  --caramel: oklch(0.65 0.13 55);      /* #B77746 */
+  --text-dark: oklch(0.22 0.04 35);    /* #2A1A14 */
+
+  --background: var(--cream);
+  --foreground: var(--text-dark);
+  --card: oklch(0.99 0.005 80);
+  --card-foreground: var(--text-dark);
+  --popover: oklch(0.99 0.005 80);
+  --popover-foreground: var(--text-dark);
+  --primary: var(--coffee);
+  --primary-foreground: var(--cream);
+  --secondary: var(--beige);
+  --secondary-foreground: var(--espresso);
+  --muted: var(--beige);
+  --muted-foreground: oklch(0.45 0.04 35);
+  --accent: var(--caramel);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.85 0.03 70);
+  --input: oklch(0.88 0.025 75);
+  --ring: var(--caramel);
+}
+
+.dark {
+  --background: oklch(0.18 0.025 35);
+  --foreground: var(--cream);
+  --card: oklch(0.23 0.035 35);
+  --card-foreground: var(--cream);
+  --popover: oklch(0.23 0.035 35);
+  --popover-foreground: var(--cream);
+  --primary: var(--caramel);
+  --primary-foreground: oklch(0.18 0.025 35);
+  --secondary: oklch(0.28 0.04 35);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.28 0.04 35);
+  --muted-foreground: oklch(0.75 0.03 70);
+  --accent: var(--caramel);
+  --accent-foreground: oklch(0.18 0.025 35);
+  --border: oklch(0.32 0.04 35);
+  --input: oklch(0.32 0.04 35);
+  --ring: var(--caramel);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 80rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility gradient-warm {
+  background-image: linear-gradient(135deg, var(--coffee), var(--espresso));
+}
+
+@utility gradient-caramel {
+  background-image: linear-gradient(135deg, var(--caramel), oklch(0.55 0.14 45));
+}
+
+@utility text-gradient-warm {
+  background-image: linear-gradient(135deg, var(--caramel), oklch(0.78 0.11 70));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
